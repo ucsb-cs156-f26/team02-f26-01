@@ -23,14 +23,13 @@ function ArticleForm({
   // Stryker disable Regex
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  
+
   // adapted from: https://stackoverflow.com/questions/161738/what-is-the-best-regular-expression-to-check-if-a-string-is-a-valid-url
-  const url_regex = 
+  const url_regex =
     /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g;
-  
+
   // from: https://regexr.com/3e48o
-  const email_regex = 
-    /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const email_regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   // Stryker restore Regex
 
   // Stryker disable next-line all
@@ -91,13 +90,12 @@ function ArticleForm({
             />
             <Form.Control.Feedback type="invalid">
               {errors.url?.message}
-              {errors.url?.type === "pattern" &&
-                "URL format was incorrect"}
+              {errors.url?.type === "pattern" && "URL format was incorrect"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
       </Row>
-      
+
       <Row>
         <Col>
           <Form.Group className="mb-3">
@@ -121,7 +119,9 @@ function ArticleForm({
       <Row>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="email">Email (of article author OR poster)</Form.Label>
+            <Form.Label htmlFor="email">
+              Email (of article author OR poster)
+            </Form.Label>
             <Form.Control
               data-testid="ArticleForm-email"
               id="email"
@@ -134,8 +134,7 @@ function ArticleForm({
             />
             <Form.Control.Feedback type="invalid">
               {errors.email?.message}
-              {errors.email?.type === "pattern" &&
-                "Email format was incorrect"}
+              {errors.email?.type === "pattern" && "Email format was incorrect"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
