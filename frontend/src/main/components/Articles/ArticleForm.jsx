@@ -29,7 +29,7 @@ function ArticleForm({
     /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g;
 
   // from: https://regexr.com/3e48o
-  const email_regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const email_regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   // Stryker restore Regex
 
   // Stryker disable next-line all
