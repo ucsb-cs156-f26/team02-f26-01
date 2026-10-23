@@ -55,123 +55,141 @@ function ArticleForm({
       </Row>
 
       <Row>
-        <Col>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="title">Title</Form.Label>
-            <Form.Control
-              data-testid="ArticleForm-title"
-              id="title"
-              type="text"
-              isInvalid={Boolean(errors.title)}
-              {...register("title", {
-                required: "Title is required.",
-              })}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.title?.message}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
+        {initialContents && (
+          <Col>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="title">Title</Form.Label>
+              <Form.Control
+                data-testid="ArticleForm-title"
+                id="title"
+                type="text"
+                value={initialContents.id}
+                isInvalid={Boolean(errors.title)}
+                {...register("title", {
+                  required: "Title is required.",
+                })}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.title?.message}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+        )}
+      </Row>
+
+      <Row>
+        {initialContents && (
+          <Col>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="url">Url</Form.Label>
+              <Form.Control
+                data-testid="ArticleForm-url"
+                id="url"
+                type="text"
+                value={initialContents.id}
+                isInvalid={Boolean(errors.url)}
+                {...register("url", {
+                  required: "Url is required.",
+                  pattern: url_regex,
+                })}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.url?.message}
+                {errors.url?.type === "pattern" && "URL format was incorrect"}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+        )}
+      </Row>
+
+      <Row>
+        {initialContents && (
+          <Col>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="explanation">Explanation</Form.Label>
+              <Form.Control
+                data-testid="ArticleForm-explanation"
+                id="explanation"
+                type="text"
+                value={initialContents.id}
+                isInvalid={Boolean(errors.explanation)}
+                {...register("explanation", {
+                  required: "Explanation is required.",
+                })}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.explanation?.message}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+        )}
+      </Row>
+
+      <Row>
+        {initialContents && (
+          <Col>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="email">
+                Email (of article author OR poster)
+              </Form.Label>
+              <Form.Control
+                data-testid="ArticleForm-email"
+                id="email"
+                type="text"
+                value={initialContents.id}
+                isInvalid={Boolean(errors.email)}
+                {...register("email", {
+                  required: "Email is required.",
+                  pattern: email_regex,
+                })}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.email?.message}
+                {errors.email?.type === "pattern" &&
+                  "Email format was incorrect."}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+        )}
+      </Row>
+
+      <Row>
+        {initialContents && (
+          <Col>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="dateAdded">
+                Date Added (iso format)
+              </Form.Label>
+              <Form.Control
+                data-testid="ArticleForm-dateAdded"
+                id="dateAdded"
+                type="datetime-local"
+                value={initialContents.id}
+                isInvalid={Boolean(errors.dateAdded)}
+                {...register("dateAdded", {
+                  required: true,
+                  pattern: isodate_regex,
+                })}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.dateAdded && "Date Added is required."}
+                {errors.dateAdded?.type === "pattern" &&
+                  "Date Added must be in the format YYYY-MM-DDTHH:MM:SS (ex: 2000-01-01T00:00:00 for New Year's Day, 2000)"}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+        )}
       </Row>
 
       <Row>
         <Col>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="url">Url</Form.Label>
-            <Form.Control
-              data-testid="ArticleForm-url"
-              id="url"
-              type="text"
-              isInvalid={Boolean(errors.url)}
-              {...register("url", {
-                required: "Url is required.",
-                pattern: url_regex,
-              })}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.url?.message}
-              {errors.url?.type === "pattern" && "URL format was incorrect"}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="explanation">Explanation</Form.Label>
-            <Form.Control
-              data-testid="ArticleForm-explanation"
-              id="explanation"
-              type="text"
-              isInvalid={Boolean(errors.explanation)}
-              {...register("explanation", {
-                required: "Explanation is required.",
-              })}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.explanation?.message}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="email">
-              Email (of article author OR poster)
-            </Form.Label>
-            <Form.Control
-              data-testid="ArticleForm-email"
-              id="email"
-              type="text"
-              isInvalid={Boolean(errors.email)}
-              {...register("email", {
-                required: "Explanation is required.",
-                pattern: email_regex,
-              })}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.email?.message}
-              {errors.email?.type === "pattern" && "Email format was incorrect"}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="dateAdded">Date Added (iso format)</Form.Label>
-            <Form.Control
-              data-testid="ArticleForm-dateAdded"
-              id="dateAdded"
-              type="datetime-local"
-              isInvalid={Boolean(errors.dateAdded)}
-              {...register("dateAdded", {
-                required: true,
-                pattern: isodate_regex,
-              })}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.dateAdded && "Date Added is required. "}
-              {errors.dateAdded?.type === "pattern" &&
-                "Date Added must be in the format YYYY-MM-DDTHH:MM:SS (ex: 2000-01-01T00:00:00 for New Year's Day, 2000)"}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Button type="submit" data-testid="UCSBDateForm-submit">
+          <Button type="submit" data-testid="ArticleForm-submit">
             {buttonLabel}
           </Button>
           <Button
             variant="Secondary"
             onClick={() => navigate(-1)}
-            data-testid="UCSBDateForm-cancel"
+            data-testid="ArticleForm-cancel"
           >
             Cancel
           </Button>
