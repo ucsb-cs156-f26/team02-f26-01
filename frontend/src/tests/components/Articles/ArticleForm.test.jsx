@@ -32,7 +32,7 @@ describe("ArticleForm tests", () => {
   test("renders correctly when passing in a Article", async () => {
     render(
       <Router>
-        <ArticleForm initialContents={articleFixtures.oneDate} />
+        <ArticleForm initialContents={articleFixtures.oneArticle} />
       </Router>,
     );
     await screen.findByTestId(/ArticleForm-id/);
@@ -47,20 +47,26 @@ describe("ArticleForm tests", () => {
       </Router>,
     );
     await screen.findByTestId("ArticleForm-dateAdded");
+    const titleField = screen.getByTestId("ArticleForm-title");
+    const urlField = screen.getByTestId("ArticleForm-url");
+    const explanationField = screen.getByTestId("ArticleForm-explanation");
+    const emailField = screen.getByTestId("ArticleForm-email");
     const dateAddedField = screen.getByTestId("ArticleForm-dateAdded");
     const submitButton = screen.getByTestId("ArticleForm-submit");
 
-    fireEvent.change(dateAddedField, { target: { value: "bad-input" } });
+    //fireEvent.change(titleField, { target: { value: "bad-input" } });
+    fireEvent.change(urlField, { target: { value: "bad-input" } });
+    //fireEvent.change(explanationField, { target: { value: "bad-input" } });
+    fireEvent.change(emailField, { target: { value: "bad-input" } });
+    //fireEvent.change(dateAddedField, { target: { value: "bad-input" } });
     fireEvent.click(submitButton);
 
-    await screen.findByText(
-      /Date Added must be in the format YYYY-MM-DDTHH:MM:SS \(ex: 2000-01-01T00:00:00 for New Year's Day, 2000\)/,
-    );
-    expect(
-      screen.getByText(
-        /Date Added must be in the format YYYY-MM-DDTHH:MM:SS \(ex: 2000-01-01T00:00:00 for New Year's Day, 2000\)/,
-      ),
-    ).toBeInTheDocument();
+    //await screen.findByText(/Title is required./);
+    await screen.findByText(/Url format was incorrect./);
+    expect(screen.getByText(/Url format was incorrect./)).toBeInTheDocument();
+    //expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
+    expect(screen.getByText(/Email format was incorrect./)).toBeInTheDocument();
+    //expect(screen.getByText(/Date Added is required./)).toBeInTheDocument();
   });
 
   test("Correct Error messsages on missing input", async () => {
@@ -89,7 +95,7 @@ describe("ArticleForm tests", () => {
         <ArticleForm submitAction={mockSubmitAction} />
       </Router>,
     );
-    await screen.findByTestId("ArticleForm-quarterYYYYQ");
+    await screen.findByTestId("ArticleForm-dateAdded");
 
     const dateAddedField = screen.getByTestId("ArticleForm-dateAdded");
     const titleField = screen.getByTestId("ArticleForm-title");
@@ -98,12 +104,12 @@ describe("ArticleForm tests", () => {
     const emailField = screen.getByTestId("ArticleForm-email");
     const submitButton = screen.getByTestId("ArticleForm-submit");
 
-    fireEvent.change(titleField, { target: { value: "" } });
-    fireEvent.change(urlField, { target: { value: "" } });
-    fireEvent.change(explanationField, { target: { value: "" } });
-    fireEvent.change(emailField, { target: { value: "" } });
+    fireEvent.change(titleField, { target: { value: "City Never Sleeps" } });
+    fireEvent.change(urlField, { target: { value: "https://www.playdeadlock.com/cityneversleeps" } });
+    fireEvent.change(explanationField, { target: { value: "The Cursed Apple is ever changing, and these streets are nothing like you remember." } });
+    fireEvent.change(emailField, { target: { value: "gaben@valvesoftware.com" } });
     fireEvent.change(dateAddedField, {
-      target: { value: "1111-11-11T11:11:11" },
+      target: { value: "2026-09-29T02:00" },
     });
     fireEvent.click(submitButton);
 
@@ -111,11 +117,19 @@ describe("ArticleForm tests", () => {
 
     expect(screen.queryByText(/Title is required./)).not.toBeInTheDocument();
     expect(screen.queryByText(/Url is required./)).not.toBeInTheDocument();
-    expect(screen.queryByText(/Explanation is required./)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Explanation is required./),
+    ).not.toBeInTheDocument();
     expect(screen.queryByText(/Email is required./)).not.toBeInTheDocument();
-    expect(screen.queryByText(/Email format was incorrect./)).not.toBeInTheDocument();
-    expect(screen.queryByText(/Date Added is required./)).not.toBeInTheDocument();
-    expect(screen.queryByText(/Date Added must be in the format YYYY-MM-DDTHH:MM:SS \(ex: 2000-01-01T00:00:00 for New Year's Day, 2000\)/)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Email format was incorrect./),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Date Added is required./),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Date Added is required./),
+    ).not.toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {

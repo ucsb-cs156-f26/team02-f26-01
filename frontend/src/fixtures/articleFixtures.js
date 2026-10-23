@@ -3,24 +3,22 @@ const articleFixtures = {
     id: 1,
     title: "City Never Sleeps",
     url: "https://www.playdeadlock.com/cityneversleeps",
-    explanation:
-      "The Cursed Apple is ever changing, and these streets are nothing like you remember.",
+    explanation: "The Cursed Apple is ever changing, and these streets are nothing like you remember.",
     email: "gaben@valvesoftware.com",
     dateAdded: "2026-09-29T02:00:00",
   },
 
   threeArticles: [
     {
-      id: 2,
+      id: 1,
       title: "City Never Sleeps",
       url: "https://www.playdeadlock.com/cityneversleeps",
-      explanation:
-        "The Cursed Apple is ever changing, and these streets are nothing like you remember.",
+      explanation: "The Cursed Apple is ever changing, and these streets are nothing like you remember.",
       email: "gaben@valvesoftware.com",
       dateAdded: "2026-09-29T02:00:00",
     },
     {
-      id: 3,
+      id: 2,
       title: "Fairfax Industries Employee Spotlight",
       url: "https://store.steampowered.com/news/app/1422450/view/703281660030880788",
       explanation: "Deadman Danny takes to the skies",
@@ -28,7 +26,7 @@ const articleFixtures = {
       dateAdded: "2026-10-13T02:03:00",
     },
     {
-      id: 4,
+      id: 3,
       title: "Make Your Move.",
       url: "https://store.steampowered.com/news/app/1422450/view/703281660030879519",
       explanation: "Solomon takes his opening round",
