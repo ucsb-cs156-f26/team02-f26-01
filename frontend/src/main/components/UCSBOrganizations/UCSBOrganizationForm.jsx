@@ -23,7 +23,7 @@ function UCSBOrganizationForm({
     <Form onSubmit={handleSubmit(submitAction)}>
       {initialContents && (
         <Form.Group className="mb-3">
-          <Form.Label htmlFor="orgCode">OrganizationCode</Form.Label>
+          <Form.Label htmlFor="orgCode">Organization Code</Form.Label>
           <Form.Control
             data-testid={testIdPrefix + "-orgCode"}
             id="orgCode"
@@ -45,7 +45,7 @@ function UCSBOrganizationForm({
           type="text"
           isInvalid={Boolean(errors.orgTranslationShort)}
           {...register("orgTranslationShort", {
-            required: "orgTranslationShort is required.",
+            required: "Short Organization Name is required.",
             maxLength: {
               value: 255,
               message: "Max length 255 characters",
@@ -65,7 +65,7 @@ function UCSBOrganizationForm({
           type="text"
           isInvalid={Boolean(errors.orgTranslation)}
           {...register("orgTranslation", {
-            required: "orgTranslation is required.",
+            required: "Organization Name is required.",
             maxLength: {
               value: 255,
               message: "Max length 255 characters",
@@ -78,19 +78,13 @@ function UCSBOrganizationForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="inactive">Inactive</Form.Label>
-        <Form.Control
+        <Form.Check
           data-testid={testIdPrefix + "-inactive"}
           id="inactive"
-          type="text"
-          isInvalid={Boolean(errors.inactive)}
-          {...register("inactive", {
-            required: "inactive is required.",
-          })}
+          type="checkbox"
+          label="Inactive"
+          {...register("inactive")}
         />
-        <Form.Control.Feedback type="invalid">
-          {errors.inactive?.message}
-        </Form.Control.Feedback>
       </Form.Group>
 
       <Button type="submit" data-testid={testIdPrefix + "-submit"}>
