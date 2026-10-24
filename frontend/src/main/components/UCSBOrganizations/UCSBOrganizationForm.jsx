@@ -19,7 +19,7 @@ function UCSBOrganizationForm( { initialContents, submitAction, buttonLabel = "C
     <Form onSubmit={handleSubmit(submitAction)}>
       {initialContents && (
         <Form.Group className="mb-3">
-          <Form.Label htmlFor="orgCode">Organization Code</Form.Label>
+          <Form.Label htmlFor="orgCode">OrganizationCode</Form.Label>
           <Form.Control
             data-testid={testIdPrefix + "-orgCode"}
             id="orgCode"
@@ -40,6 +40,10 @@ function UCSBOrganizationForm( { initialContents, submitAction, buttonLabel = "C
           isInvalid={Boolean(errors.orgTranslationShort)}
           {...register("orgTranslationShort", {
             required: "orgTranslationShort is required.",
+            maxLength: {
+              value: 255,
+              message: "Max length 255 characters",
+            },
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -56,6 +60,10 @@ function UCSBOrganizationForm( { initialContents, submitAction, buttonLabel = "C
           isInvalid={Boolean(errors.orgTranslation)}
           {...register("orgTranslation", {
             required: "orgTranslation is required.",
+            maxLength: {
+              value: 255,
+              message: "Max length 255 characters",
+            },
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -68,7 +76,7 @@ function UCSBOrganizationForm( { initialContents, submitAction, buttonLabel = "C
         <Form.Control
           data-testid={testIdPrefix + "-inactive"}
           id="inactive"
-          type="checkbox"
+          type="text"
           isInvalid={Boolean(errors.inactive)}
           {...register("inactive", {
             required: "inactive is required.",
