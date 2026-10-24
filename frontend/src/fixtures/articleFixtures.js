@@ -3,7 +3,8 @@ const articleFixtures = {
     id: 1,
     title: "City Never Sleeps",
     url: "https://www.playdeadlock.com/cityneversleeps",
-    explanation: "The Cursed Apple is ever changing, and these streets are nothing like you remember.",
+    explanation:
+      "The Cursed Apple is ever changing, and these streets are nothing like you remember.",
     email: "gaben@valvesoftware.com",
     dateAdded: "2026-09-29T02:00:00",
   },
@@ -13,7 +14,8 @@ const articleFixtures = {
       id: 1,
       title: "City Never Sleeps",
       url: "https://www.playdeadlock.com/cityneversleeps",
-      explanation: "The Cursed Apple is ever changing, and these streets are nothing like you remember.",
+      explanation:
+        "The Cursed Apple is ever changing, and these streets are nothing like you remember.",
       email: "gaben@valvesoftware.com",
       dateAdded: "2026-09-29T02:00:00",
     },

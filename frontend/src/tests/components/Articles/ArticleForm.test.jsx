@@ -47,11 +47,11 @@ describe("ArticleForm tests", () => {
       </Router>,
     );
     await screen.findByTestId("ArticleForm-dateAdded");
-    const titleField = screen.getByTestId("ArticleForm-title");
+    //const titleField = screen.getByTestId("ArticleForm-title");
     const urlField = screen.getByTestId("ArticleForm-url");
-    const explanationField = screen.getByTestId("ArticleForm-explanation");
+    //const explanationField = screen.getByTestId("ArticleForm-explanation");
     const emailField = screen.getByTestId("ArticleForm-email");
-    const dateAddedField = screen.getByTestId("ArticleForm-dateAdded");
+    //const dateAddedField = screen.getByTestId("ArticleForm-dateAdded");
     const submitButton = screen.getByTestId("ArticleForm-submit");
 
     //fireEvent.change(titleField, { target: { value: "bad-input" } });
@@ -105,9 +105,18 @@ describe("ArticleForm tests", () => {
     const submitButton = screen.getByTestId("ArticleForm-submit");
 
     fireEvent.change(titleField, { target: { value: "City Never Sleeps" } });
-    fireEvent.change(urlField, { target: { value: "https://www.playdeadlock.com/cityneversleeps" } });
-    fireEvent.change(explanationField, { target: { value: "The Cursed Apple is ever changing, and these streets are nothing like you remember." } });
-    fireEvent.change(emailField, { target: { value: "gaben@valvesoftware.com" } });
+    fireEvent.change(urlField, {
+      target: { value: "https://www.playdeadlock.com/cityneversleeps" },
+    });
+    fireEvent.change(explanationField, {
+      target: {
+        value:
+          "The Cursed Apple is ever changing, and these streets are nothing like you remember.",
+      },
+    });
+    fireEvent.change(emailField, {
+      target: { value: "gaben@valvesoftware.com" },
+    });
     fireEvent.change(dateAddedField, {
       target: { value: "2026-09-29T02:00" },
     });

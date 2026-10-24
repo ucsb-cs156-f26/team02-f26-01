@@ -149,7 +149,7 @@ function ArticleForm({
               data-testid={testIdPrefix + "-dateAdded"}
               id="dateAdded"
               type="datetime-local"
-             // value={initialContents && initialContents.dateAdded}
+              // value={initialContents && initialContents.dateAdded}
               isInvalid={Boolean(errors.dateAdded)}
               {...register("dateAdded", {
                 required: true,
