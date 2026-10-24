@@ -2,6 +2,7 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function getDefaultValues(initialContents) {
   return initialContents ? { ...initialContents } : { inactive: false };
 }
