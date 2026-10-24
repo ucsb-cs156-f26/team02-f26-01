@@ -1,7 +1,9 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router";
 
-import UCSBOrganizationForm, {getDefaultValues, } from "main/components/UCSBOrganizations/UCSBOrganizationForm";
+import UCSBOrganizationForm, {
+  getDefaultValues,
+} from "main/components/UCSBOrganizations/UCSBOrganizationForm";
 import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -26,16 +28,16 @@ describe("UCSBOrganizationForm tests", () => {
   ];
   const testId = "UCSBOrganizationForm";
 
-test("that getDefaultValues works with initialContents", () => {
-  const organization = ucsbOrganizationFixtures.oneOrganization;
-  expect(getDefaultValues(organization)).toEqual(organization);
-});
-
-test("that getDefaultValues works without initialContents", () => {
-  expect(getDefaultValues(undefined)).toEqual({
-    inactive: false,
+  test("that getDefaultValues works with initialContents", () => {
+    const organization = ucsbOrganizationFixtures.oneOrganization;
+    expect(getDefaultValues(organization)).toEqual(organization);
   });
-});
+
+  test("that getDefaultValues works without initialContents", () => {
+    expect(getDefaultValues(undefined)).toEqual({
+      inactive: false,
+    });
+  });
 
   test("renders correctly with no initialContents", async () => {
     render(
@@ -118,7 +120,9 @@ test("that getDefaultValues works without initialContents", () => {
       target: { value: "a".repeat(256) },
     });
 
-    const orgTranslationShortInput = screen.getByTestId(`${testId}-orgTranslationShort`);
+    const orgTranslationShortInput = screen.getByTestId(
+      `${testId}-orgTranslationShort`,
+    );
     fireEvent.change(orgTranslationShortInput, {
       target: { value: "a".repeat(256) },
     });

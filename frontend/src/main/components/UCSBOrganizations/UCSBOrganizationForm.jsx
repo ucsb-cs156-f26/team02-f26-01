@@ -3,9 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
 export function getDefaultValues(initialContents) {
-  return initialContents
-    ? { ...initialContents }
-    : { inactive: false };
+  return initialContents ? { ...initialContents } : { inactive: false };
 }
 
 function UCSBOrganizationForm({
@@ -13,7 +11,7 @@ function UCSBOrganizationForm({
   submitAction,
   buttonLabel = "Create",
 }) {
-    const defaultValues = getDefaultValues(initialContents);
+  const defaultValues = getDefaultValues(initialContents);
 
   // Stryker disable all
   const {
@@ -50,7 +48,7 @@ function UCSBOrganizationForm({
           Short Organization Name
         </Form.Label>
         <Form.Control
-        data-testid={testIdPrefix + "-orgTranslationShort"}
+          data-testid={testIdPrefix + "-orgTranslationShort"}
           id="orgTranslationShort"
           type="text"
           isInvalid={Boolean(errors.orgTranslationShort)}
@@ -96,9 +94,7 @@ function UCSBOrganizationForm({
         />
       </Form.Group>
 
-      <Button type="submit">
-        {buttonLabel}
-      </Button>
+      <Button type="submit">{buttonLabel}</Button>
       <Button
         variant="Secondary"
         onClick={() => navigate(-1)}
