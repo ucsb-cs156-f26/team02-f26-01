@@ -2,16 +2,18 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
+export function getDefaultValues(initialContents) {
+  return initialContents
+    ? { ...initialContents }
+    : { inactive: false };
+}
+
 function UCSBOrganizationForm({
   initialContents,
   submitAction,
   buttonLabel = "Create",
 }) {
-  const defaultValues = initialContents
-    ? {
-        ...initialContents,
-      }
-    : { inactive: false };
+    const defaultValues = getDefaultValues(initialContents);
 
   // Stryker disable all
   const {
@@ -48,7 +50,7 @@ function UCSBOrganizationForm({
           Short Organization Name
         </Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-orgTranslationShort"}
+        data-testid={testIdPrefix + "-orgTranslationShort"}
           id="orgTranslationShort"
           type="text"
           isInvalid={Boolean(errors.orgTranslationShort)}
@@ -87,7 +89,6 @@ function UCSBOrganizationForm({
 
       <Form.Group className="mb-3">
         <Form.Check
-          data-testid={testIdPrefix + "-inactive"}
           id="inactive"
           type="checkbox"
           label="Inactive"
@@ -95,7 +96,7 @@ function UCSBOrganizationForm({
         />
       </Form.Group>
 
-      <Button type="submit" data-testid={testIdPrefix + "-submit"}>
+      <Button type="submit">
         {buttonLabel}
       </Button>
       <Button
