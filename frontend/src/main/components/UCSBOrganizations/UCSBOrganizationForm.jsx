@@ -2,7 +2,11 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
-function UCSBOrganizationForm( { initialContents, submitAction, buttonLabel = "Create",}) {
+function UCSBOrganizationForm({
+  initialContents,
+  submitAction,
+  buttonLabel = "Create",
+}) {
   // Stryker disable all
   const {
     register,
@@ -32,7 +36,9 @@ function UCSBOrganizationForm( { initialContents, submitAction, buttonLabel = "C
       )}
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="orgTranslationShort">Short Organization Name</Form.Label>
+        <Form.Label htmlFor="orgTranslationShort">
+          Short Organization Name
+        </Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-orgTranslationShort"}
           id="orgTranslationShort"
