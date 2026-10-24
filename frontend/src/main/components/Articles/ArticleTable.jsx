@@ -28,7 +28,7 @@ export default function ArticleTable({
     ["/api/articles/all"],
   );
   // Stryker restore all
-  
+
   // TODO
   // Stryker disable next-line all : TODO try to make a good test for this
   const deleteCallback = async (cell) => {
@@ -48,11 +48,11 @@ export default function ArticleTable({
       header: "Url",
       accessorKey: "url",
     },
-        {
+    {
       header: "Explanation",
       accessorKey: "explanation",
     },
-        {
+    {
       header: "Email",
       accessorKey: "email",
     },
@@ -69,7 +69,5 @@ export default function ArticleTable({
     );
   }
 
-  return (
-    <OurTable data={articles} columns={columns} testid={testIdPrefix} />
-  );
+  return <OurTable data={articles} columns={columns} testid={testIdPrefix} />;
 }
