@@ -11,10 +11,9 @@ import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 
-import UCSBOrganizationsIndexPage from "main/pages/UCSBOrganizations/UCSBOrganizationsIndexPage";
-import UCSBOrganizationsCreatePage from "main/pages/UCSBOrganizations/UCSBOrganizationsCreatePage";
-import UCSBOrganizationsEditPage from "main/pages/UCSBOrganizations/UCSBOrganizationsEditPage";
-
+import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
+import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
 
 import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
@@ -54,9 +53,13 @@ function App() {
           />
         </>
       )}
-            {hasRole(currentUser, "ROLE_USER") && (
+      {hasRole(currentUser, "ROLE_USER") && (
         <>
-          <Route exact path="/ucsborganizations" element={<UCSBOrganizationsIndexPage />} />
+          <Route
+            exact
+            path="/ucsborganizations"
+            element={<UCSBOrganizationIndexPage />}
+          />
         </>
       )}
       {hasRole(currentUser, "ROLE_ADMIN") && (
@@ -64,12 +67,12 @@ function App() {
           <Route
             exact
             path="/ucsborganizations/edit/:orgCode"
-            element={<UCSBOrganizationsEditPage />}
+            element={<UCSBOrganizationEditPage />}
           />
           <Route
             exact
             path="/ucsborganizations/create"
-            element={<UCSBOrganizationsCreatePage />}
+            element={<UCSBOrganizationCreatePage />}
           />
         </>
       )}

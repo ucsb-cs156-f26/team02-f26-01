@@ -1,16 +1,16 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 
-export default function UCSBOrganizationsIndexPage() {
+export default function UCSBOrganizationIndexPage() {
   // Stryker disable all : placeholder for future implementation
   return (
     <BasicLayout>
       <div className="pt-2">
         <h1>Index page not yet implemented</h1>
         <p>
-          <a href="/UCSBOrganizations/create">Create</a>
+          <a href="/UCSBOrganization/create">Create</a>
         </p>
         <p>
-          <a href="/UCSBOrganizations/edit/1">Edit</a>
+          <a href="/UCSBOrganization/edit/1">Edit</a>
         </p>
       </div>
     </BasicLayout>
