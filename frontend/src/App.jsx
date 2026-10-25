@@ -19,6 +19,11 @@ import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
 import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
 
+import ArticleIndexPage from "main/pages/Articles/ArticleIndexPage";
+import ArticleCreatePage from "main/pages/Articles/ArticleCreatePage";
+import ArticleEditPage from "main/pages/Articles/ArticleEditPage";
+
+
 import { hasRole, useCurrentUser } from "main/utils/useCurrentUser";
 
 import "bootstrap/dist/css/bootstrap.css";
