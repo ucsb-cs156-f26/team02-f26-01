@@ -23,7 +23,6 @@ import ArticleIndexPage from "main/pages/Articles/ArticleIndexPage";
 import ArticleCreatePage from "main/pages/Articles/ArticleCreatePage";
 import ArticleEditPage from "main/pages/Articles/ArticleEditPage";
 
-
 import { hasRole, useCurrentUser } from "main/utils/useCurrentUser";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -119,13 +118,9 @@ function App() {
           />
         </>
       )}
-            {hasRole(currentUser, "ROLE_USER") && (
+      {hasRole(currentUser, "ROLE_USER") && (
         <>
-          <Route
-            exact
-            path="/articles"
-            element={<ArticleIndexPage />}
-          />
+          <Route exact path="/articles" element={<ArticleIndexPage />} />
         </>
       )}
       {hasRole(currentUser, "ROLE_ADMIN") && (
