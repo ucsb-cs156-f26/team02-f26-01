@@ -1,4 +1,4 @@
-import { render, screen, _fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import UCSBOrganizationsCreatePage from "main/pages/UCSBOrganizations/UCSBOrganizationsCreatePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
@@ -56,7 +56,9 @@ describe("UCSBOrganizationsCreatePage tests", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByLabelText("Short Organization Name")).toBeInTheDocument();
+      expect(
+        screen.getByLabelText("Short Organization Name"),
+      ).toBeInTheDocument();
     });
   });
 
@@ -64,13 +66,15 @@ describe("UCSBOrganizationsCreatePage tests", () => {
     const queryClient = new QueryClient();
 
     const ucsbOrganization = {
-        orgCode: "ZPR",
-        orgTranslationShort: "ZETA PHI RHO",
-        orgTranslation: "ZETA PHI RHO",
-        inactive: false,
+      orgCode: "ZPR",
+      orgTranslationShort: "ZETA PHI RHO",
+      orgTranslation: "ZETA PHI RHO",
+      inactive: false,
     };
 
-    axiosMock.onPost("/api/ucsborganizations/post").reply(202, ucsbOrganization);
+    axiosMock
+      .onPost("/api/ucsborganizations/post")
+      .reply(202, ucsbOrganization);
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -81,10 +85,17 @@ describe("UCSBOrganizationsCreatePage tests", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByLabelText("Short Organization Name")).toBeInTheDocument();
+      expect(
+        screen.getByLabelText("Short Organization Name"),
+      ).toBeInTheDocument();
     });
 
-    const orgTranslationShortInput = screen.getByLabelText("Short Organization Name");
+    const orgCodeInput = screen.getByLabelText("Organization Code");
+    expect(orgCodeInput).toBeInTheDocument();
+
+    const orgTranslationShortInput = screen.getByLabelText(
+      "Short Organization Name",
+    );
     expect(orgTranslationShortInput).toBeInTheDocument();
 
     const orgTranslationInput = screen.getByLabelText("Organization Name");
@@ -96,11 +107,14 @@ describe("UCSBOrganizationsCreatePage tests", () => {
     const createButton = screen.getByText("Create");
     expect(createButton).toBeInTheDocument();
 
-    fireEvent.change(orgTranslationShortInput, { target: { value: "ZETA PHI RHO" } });
+    fireEvent.change(orgCodeInput, { target: { value: "ZPR" } });
+    fireEvent.change(orgTranslationShortInput, {
+      target: { value: "ZETA PHI RHO" },
+    });
     fireEvent.change(orgTranslationInput, {
       target: { value: "ZETA PHI RHO" },
     });
-    fireEvent.click(inactiveInput);
+
     fireEvent.click(createButton);
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
@@ -114,8 +128,8 @@ describe("UCSBOrganizationsCreatePage tests", () => {
 
     // assert - check that the toast was called with the expected message
     expect(mockToast).toBeCalledWith(
-      "New organization Created - id: 3 name: ZETA PHI RHO",
+      "New organization Created - orgCode: ZPR orgTranslationShort: ZETA PHI RHO",
     );
-    expect(mockNavigate).toBeCalledWith({ to: "/restaurants" });
+    expect(mockNavigate).toBeCalledWith({ to: "/ucsborganizations" });
   });
 });
