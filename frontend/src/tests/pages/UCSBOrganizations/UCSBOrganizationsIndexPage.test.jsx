@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
+import UCSBOrganizationsIndexPage from "main/pages/UCSBOrganizations/UCSBOrganizationsIndexPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 
@@ -7,9 +7,8 @@ import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import { expect } from "vitest";
 
-describe("UCSBOrganizationsCreatePage tests", () => {
+describe("UCSBOrganizationsIndexPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
   const setupUserOnly = () => {
@@ -30,19 +29,22 @@ describe("UCSBOrganizationsCreatePage tests", () => {
     setupUserOnly();
 
     // act
+
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationCreatePage />
+          <UCSBOrganizationsIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
-    // assert
+    await screen.findByText("Index page not yet implemented");
 
-    await screen.findByText("Create page not yet implemented");
+    // assert
     expect(
-      screen.getByText("Create page not yet implemented"),
+      screen.getByText("Index page not yet implemented"),
     ).toBeInTheDocument();
+    expect(screen.getByText("Create")).toBeInTheDocument();
+    expect(screen.getByText("Edit")).toBeInTheDocument();
   });
 });

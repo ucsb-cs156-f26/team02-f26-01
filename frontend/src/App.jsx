@@ -11,9 +11,9 @@ import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 
-import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
-import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
-import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
+import UCSBOrganizationsIndexPage from "main/pages/UCSBOrganizations/UCSBOrganizationsIndexPage";
+import UCSBOrganizationsCreatePage from "main/pages/UCSBOrganizations/UCSBOrganizationsCreatePage";
+import UCSBOrganizationsEditPage from "main/pages/UCSBOrganizations/UCSBOrganizationsEditPage";
 
 import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
@@ -58,7 +58,7 @@ function App() {
           <Route
             exact
             path="/ucsborganizations"
-            element={<UCSBOrganizationIndexPage />}
+            element={<UCSBOrganizationsIndexPage />}
           />
         </>
       )}
@@ -67,12 +67,12 @@ function App() {
           <Route
             exact
             path="/ucsborganizations/edit/:orgCode"
-            element={<UCSBOrganizationEditPage />}
+            element={<UCSBOrganizationsEditPage />}
           />
           <Route
             exact
             path="/ucsborganizations/create"
-            element={<UCSBOrganizationCreatePage />}
+            element={<UCSBOrganizationsCreatePage />}
           />
         </>
       )}
