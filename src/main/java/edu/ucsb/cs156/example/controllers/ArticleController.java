@@ -43,25 +43,25 @@ public class ArticleController extends ApiController {
       @Parameter(name = "email", description = "Author email: should be ...@ucsb.edu") @RequestParam
           String email,
       @Parameter(
-              name = "localDateTime",
+              name = "dateAdded",
               description =
                   "date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)")
-          @RequestParam("localDateTime")
+          @RequestParam("dateAdded")
           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-          LocalDateTime localDateTime)
+          LocalDateTime dateAdded)
       throws JsonProcessingException {
 
     // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     // See: https://www.baeldung.com/spring-date-parameters
 
-    log.info("localDateTime={}", localDateTime);
+    log.info("dateAdded={}", dateAdded);
 
     Article article = new Article();
     article.setTitle(title);
     article.setUrl(url);
     article.setExplanation(explanation);
     article.setEmail(email);
-    article.setDateAdded(localDateTime); // might need updating?
+    article.setDateAdded(dateAdded); // might need updating?
 
     Article savedArticle = articleRepository.save(article);
 
@@ -72,11 +72,11 @@ public class ArticleController extends ApiController {
 
   // #region Read
   /**
-   * List all article
+   * List all articles
    *
    * @return an iterable of Article
    */
-  @Operation(summary = "List all article")
+  @Operation(summary = "List all articles")
   @PreAuthorize("hasRole('ROLE_USER')")
   @GetMapping("/all")
   public Iterable<Article> allArticles() {
@@ -138,12 +138,12 @@ public class ArticleController extends ApiController {
 
   // #region Delete
   /**
-   * Delete an Article
+   * Delete an article
    *
    * @param id the id of the article to delete
    * @return a message indicating the article was deleted
    */
-  @Operation(summary = "Delete an Article")
+  @Operation(summary = "Delete an article")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @DeleteMapping("")
   public Object deleteArticle(@Parameter(name = "id") @RequestParam Long id) {

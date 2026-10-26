@@ -4,7 +4,7 @@ import { Navigate } from "react-router";
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 
-export default function ArticleCreatePage() {
+export default function ArticleCreatePage({ storybook = false }) {
   // Stryker disable all : placeholder for future implementation
 
   const objectToAxiosParams = (article) => ({
@@ -20,7 +20,7 @@ export default function ArticleCreatePage() {
   });
 
   const onSuccess = (article) => {
-    toast(`New article Created - id: ${article.id} title: ${article.title}`);
+    toast(`New Article Created - id: ${article.id} title: ${article.title}`);
   };
 
   const mutation = useBackendMutation(
@@ -37,7 +37,7 @@ export default function ArticleCreatePage() {
   };
 
   if (isSuccess && !storybook) {
-    return <Navigate to="/article" />;
+    return <Navigate to="/articles" />;
   }
 
   return (

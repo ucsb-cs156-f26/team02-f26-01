@@ -54,7 +54,7 @@ public class ArticleControllerTests extends ControllerTestCase {
                 .param("url", "https://www.playdeadlock.com/cityneversleeps")
                 .param("explanation", "The biggest update the game's map has ever seen! And more!")
                 .param("email", "gaben@valvesoftware.com")
-                .param("localDateTime", "2026-09-29T02:00:00")
+                .param("dateAdded", "2026-09-29T02:00:00")
                 .with(csrf()))
         .andExpect(status().is(403));
   }
@@ -69,7 +69,7 @@ public class ArticleControllerTests extends ControllerTestCase {
                 .param("url", "https://www.playdeadlock.com/cityneversleeps")
                 .param("explanation", "The biggest update the game's map has ever seen! And more!")
                 .param("email", "gaben@valvesoftware.com")
-                .param("localDateTime", "2026-09-29T02:00:00")
+                .param("dateAdded", "2026-09-29T02:00:00")
                 .with(csrf()))
         .andExpect(status().is(403)); // only admins can post
   }
@@ -103,7 +103,7 @@ public class ArticleControllerTests extends ControllerTestCase {
                     .param(
                         "explanation", "The biggest update the game's map has ever seen! And more!")
                     .param("email", "gaben@valvesoftware.com")
-                    .param("localDateTime", localTimeOfArticle)
+                    .param("dateAdded", localTimeOfArticle)
                     .with(csrf()))
             .andExpect(status().isOk())
             .andReturn();
