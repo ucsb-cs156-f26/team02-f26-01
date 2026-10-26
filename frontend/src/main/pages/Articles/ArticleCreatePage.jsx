@@ -37,7 +37,7 @@ export default function ArticleCreatePage({ storybook = false }) {
   };
 
   if (isSuccess && !storybook) {
-    return <Navigate to="/article" />;
+    return <Navigate to="/articles" />;
   }
 
   return (

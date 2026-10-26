@@ -129,6 +129,6 @@ describe("ArticleCreatePage tests", () => {
     expect(mockToast).toBeCalledWith(
       "New Article Created - id: 17 title: City Never Sleeps",
     );
-    expect(mockNavigate).toBeCalledWith({ to: "/article" });
+    expect(mockNavigate).toBeCalledWith({ to: "/articles" });
   });
 });
