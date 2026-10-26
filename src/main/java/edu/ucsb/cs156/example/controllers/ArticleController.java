@@ -72,11 +72,11 @@ public class ArticleController extends ApiController {
 
   // #region Read
   /**
-   * List all article
+   * List all articles
    *
    * @return an iterable of Article
    */
-  @Operation(summary = "List all article")
+  @Operation(summary = "List all articles")
   @PreAuthorize("hasRole('ROLE_USER')")
   @GetMapping("/all")
   public Iterable<Article> allArticles() {
@@ -138,12 +138,12 @@ public class ArticleController extends ApiController {
 
   // #region Delete
   /**
-   * Delete an Article
+   * Delete an article
    *
    * @param id the id of the article to delete
    * @return a message indicating the article was deleted
    */
-  @Operation(summary = "Delete an Article")
+  @Operation(summary = "Delete an article")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @DeleteMapping("")
   public Object deleteArticle(@Parameter(name = "id") @RequestParam Long id) {
