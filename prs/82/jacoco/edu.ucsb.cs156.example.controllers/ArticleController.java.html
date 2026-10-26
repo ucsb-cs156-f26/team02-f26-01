@@ -72,11 +72,11 @@ import org.springframework.web.bind.annotation.RestController;
 
   // #region Read
   /**
-   * List all article
+   * List all articles
    *
    * @return an iterable of Article
    */
-  @Operation(summary = &quot;List all article&quot;)
+  @Operation(summary = &quot;List all articles&quot;)
   @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
   @GetMapping(&quot;/all&quot;)
   public Iterable&lt;Article&gt; allArticles() {
@@ -138,12 +138,12 @@ import org.springframework.web.bind.annotation.RestController;
 
   // #region Delete
   /**
-   * Delete an Article
+   * Delete an article
    *
    * @param id the id of the article to delete
    * @return a message indicating the article was deleted
    */
-  @Operation(summary = &quot;Delete an Article&quot;)
+  @Operation(summary = &quot;Delete an article&quot;)
   @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
   @DeleteMapping(&quot;&quot;)
   public Object deleteArticle(@Parameter(name = &quot;id&quot;) @RequestParam Long id) {
