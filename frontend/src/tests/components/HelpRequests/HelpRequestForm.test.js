@@ -69,7 +69,9 @@ describe("HelpRequestForm tests", () => {
 
     await screen.findByText(/Email is required./);
     expect(screen.getByText(/Team ID is required./)).toBeInTheDocument();
-    expect(screen.getByText(/Table or Breakout Room is required./)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Table or Breakout Room is required./),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Request Time is required./)).toBeInTheDocument();
     expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
   });
@@ -84,22 +86,28 @@ describe("HelpRequestForm tests", () => {
     );
     await screen.findByTestId("HelpRequestForm-requesterEmail");
 
-    const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+    const requesterEmailField = screen.getByTestId(
+      "HelpRequestForm-requesterEmail",
+    );
     const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-    const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
+    const tableOrBreakoutRoomField = screen.getByTestId(
+      "HelpRequestForm-tableOrBreakoutRoom",
+    );
     const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
     const explanationField = screen.getByTestId("HelpRequestForm-explanation");
     const solvedField = screen.getByTestId("HelpRequestForm-solved");
     const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
-    fireEvent.change(requesterEmailField, { target: { value: "test@ucsb.edu" } });
+    fireEvent.change(requesterEmailField, {
+      target: { value: "test@ucsb.edu" },
+    });
     fireEvent.change(teamIdField, { target: { value: "01" } });
-    fireEvent.change(tableOrBreakoutRoomField, { target: { value: "table"}})
+    fireEvent.change(tableOrBreakoutRoomField, { target: { value: "table" } });
     fireEvent.change(requestTimeField, {
       target: { value: "2022-01-02T12:00" },
     });
-    fireEvent.change(explanationField, { target: { value: "None"}});
-    fireEvent.change(solvedField, { target: {value: false}});
+    fireEvent.change(explanationField, { target: { value: "None" } });
+    fireEvent.change(solvedField, { target: { value: false } });
 
     fireEvent.click(submitButton);
 
