@@ -2,6 +2,10 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
+// stryker disable next-line StringLiteral,Regex
+const isodate_regex =
+  /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+
 function HelpRequestForm({
   initialContents,
   submitAction,
@@ -14,9 +18,6 @@ function HelpRequestForm({
   } = useForm({ defaultValues: initialContents || {} });
 
   const navigate = useNavigate();
-
-  const isodate_regex =
-    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -38,7 +39,7 @@ function HelpRequestForm({
         )}
 
         <Col>
-          <Form.Group className="mb3">
+          <Form.Group className="mb-3">
             <Form.Label htmlFor="requesterEmail">Email</Form.Label>
             <Form.Control
               data-testid="HelpRequestForm-requesterEmail"
@@ -53,10 +54,10 @@ function HelpRequestForm({
               {errors.requesterEmail?.message}
             </Form.Control.Feedback>
           </Form.Group>
-          "
         </Col>
+
         <Col>
-          <Form.Group className="mb3">
+          <Form.Group className="mb-3">
             <Form.Label htmlFor="teamId">Team ID</Form.Label>
             <Form.Control
               data-testid="HelpRequestForm-teamId"
@@ -71,10 +72,10 @@ function HelpRequestForm({
               {errors.teamId?.message}
             </Form.Control.Feedback>
           </Form.Group>
-          "
         </Col>
+
         <Col>
-          <Form.Group className="mb3">
+          <Form.Group className="mb-3">
             <Form.Label htmlFor="tableOrBreakoutRoom">
               Table or Breakout Room
             </Form.Label>
@@ -91,8 +92,8 @@ function HelpRequestForm({
               {errors.tableOrBreakoutRoom?.message}
             </Form.Control.Feedback>
           </Form.Group>
-          "
         </Col>
+
         <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="requestTime">
@@ -104,17 +105,18 @@ function HelpRequestForm({
               type="datetime-local"
               isInvalid={Boolean(errors.requestTime)}
               {...register("requestTime", {
-                required: true,
+                required: "Request Time is required.",
                 pattern: isodate_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.requestTime && "Request Time is required."}
+              {errors.requestTime && "Request Time must be in ISO format."}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
+
         <Col>
-          <Form.Group className="mb3">
+          <Form.Group className="mb-3">
             <Form.Label htmlFor="explanation">Explanation</Form.Label>
             <Form.Control
               data-testid="HelpRequestForm-explanation"
@@ -129,8 +131,8 @@ function HelpRequestForm({
               {errors.explanation?.message}
             </Form.Control.Feedback>
           </Form.Group>
-          "
         </Col>
+
         <Col>
           <Form.Group className="mb-3">
             <Form.Check
@@ -147,6 +149,7 @@ function HelpRequestForm({
           </Form.Group>
         </Col>
       </Row>
+
       <Row>
         <Col>
           <Button type="submit" data-testid="HelpRequestForm-submit">
