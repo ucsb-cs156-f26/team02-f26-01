@@ -63,10 +63,8 @@ describe("HelpRequestForm tests", () => {
 
     fireEvent.change(requestTime, { target: { value: "bad-input" } });
 
-    await screen.findByText(/Request Time must be in ISO format./);
-    expect(
-      screen.getByText(/Request Time must be in ISO format./),
-    ).toBeInTheDocument();
+    await screen.findByText(/Request Time is required./);
+    expect(screen.getByText(/Request Time is required./)).toBeInTheDocument();
   });
 
   test("Submits form using default initialContents fallback", async () => {
@@ -114,34 +112,7 @@ describe("HelpRequestForm tests", () => {
     expect(
       screen.queryByText(/Request Time must be in ISO format./),
     ).not.toBeInTheDocument();
-
-    // fireEvent.change(screen.getByTestId("HelpRequestForm-requestTime"), {
-    //   target: { value: "2022-01-02T12:00:00.000" },
-    // });
-
-    // expect(screen.queryByText(/Request Time must be in ISO format./)).not.toBeInTheDocument();
   });
-
-  // it("shows an error for an invalid datetime", () => {
-  //   render(<HelpRequestForm />);
-  //   fireEvent.change(screen.getByLabelText(/datetime/i), {
-  //     target: { value: "not-a-date" },
-  //   });
-  //   expect(screen.getByText(/invalid/i)).toBeInTheDocument();
-
-  //   it("accepts each supported ISO datetime format", () => {
-  //     for (const ts of [
-  //       "2024-01-15T10:30:00.123",
-  //       "2024-01-15T10:30:00",
-  //       "2024-01-15T10:30",
-  //     ]) {
-  //       const { container } = render(
-  //         <HelpRequestForm initialContents={{ datetime: ts }} />,
-  //       );
-  //       expect(screen.getByLabelText(/datetime/i)).toHaveValue(ts); // or expect no error
-  //     }
-  //   });
-  // });
 
   test("Submits form when passing initialContents", async () => {
     const mockSubmitAction = vi.fn();

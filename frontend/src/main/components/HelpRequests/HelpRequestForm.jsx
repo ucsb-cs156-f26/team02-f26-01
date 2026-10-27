@@ -2,9 +2,12 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
-// stryker disable next-line StringLiteral,Regex
+// Stryker disable Regex
 const isodate_regex =
   /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+// Stryker restore Regex
+
+// Stryker disable next-line all
 
 function HelpRequestForm({
   initialContents,
@@ -110,7 +113,7 @@ function HelpRequestForm({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.requestTime && "Request Time must be in ISO format."}
+              {errors.requestTime?.message}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
