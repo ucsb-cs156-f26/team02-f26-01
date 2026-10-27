@@ -231,9 +231,16 @@
 <a name='L166'></a><a href='#L166'>166</a>
 <a name='L167'></a><a href='#L167'>167</a>
 <a name='L168'></a><a href='#L168'>168</a>
-<a name='L169'></a><a href='#L169'>169</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -248,10 +255,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -403,6 +409,10 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 &nbsp;
+// stryker disable next-line StringLiteral,Regex
+const isodate_regex =
+  /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+&nbsp;
 function HelpRequestForm({
   initialContents,
   submitAction,
@@ -415,9 +425,6 @@ function HelpRequestForm({
   } = useForm({ defaultValues: initialContents || {} });
 &nbsp;
   const navigate = useNavigate();
-&nbsp;
-  const isodate_regex =
-    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
 &nbsp;
   return (
     &lt;Form onSubmit={handleSubmit(submitAction)}&gt;
@@ -439,7 +446,7 @@ function HelpRequestForm({
         )}
 &nbsp;
         &lt;Col&gt;
-          &lt;Form.Group className="mb3"&gt;
+          &lt;Form.Group className="mb-3"&gt;
             &lt;Form.Label htmlFor="requesterEmail"&gt;Email&lt;/Form.Label&gt;
             &lt;Form.Control
               data-testid="HelpRequestForm-requesterEmail"
@@ -454,10 +461,10 @@ function HelpRequestForm({
               {errors.requesterEmail?.message}
             &lt;/Form.Control.Feedback&gt;
           &lt;/Form.Group&gt;
-          "
         &lt;/Col&gt;
+&nbsp;
         &lt;Col&gt;
-          &lt;Form.Group className="mb3"&gt;
+          &lt;Form.Group className="mb-3"&gt;
             &lt;Form.Label htmlFor="teamId"&gt;Team ID&lt;/Form.Label&gt;
             &lt;Form.Control
               data-testid="HelpRequestForm-teamId"
@@ -472,10 +479,10 @@ function HelpRequestForm({
               {errors.teamId?.message}
             &lt;/Form.Control.Feedback&gt;
           &lt;/Form.Group&gt;
-          "
         &lt;/Col&gt;
+&nbsp;
         &lt;Col&gt;
-          &lt;Form.Group className="mb3"&gt;
+          &lt;Form.Group className="mb-3"&gt;
             &lt;Form.Label htmlFor="tableOrBreakoutRoom"&gt;
               Table or Breakout Room
             &lt;/Form.Label&gt;
@@ -492,8 +499,8 @@ function HelpRequestForm({
               {errors.tableOrBreakoutRoom?.message}
             &lt;/Form.Control.Feedback&gt;
           &lt;/Form.Group&gt;
-          "
         &lt;/Col&gt;
+&nbsp;
         &lt;Col&gt;
           &lt;Form.Group className="mb-3"&gt;
             &lt;Form.Label htmlFor="requestTime"&gt;
@@ -505,17 +512,18 @@ function HelpRequestForm({
               type="datetime-local"
               isInvalid={Boolean(errors.requestTime)}
               {...register("requestTime", {
-                required: true,
+                required: "Request Time is required.",
                 pattern: isodate_regex,
               })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.requestTime &amp;&amp; "Request Time is required."}
+              {errors.requestTime &amp;&amp; "Request Time must be in ISO format."}
             &lt;/Form.Control.Feedback&gt;
           &lt;/Form.Group&gt;
         &lt;/Col&gt;
+&nbsp;
         &lt;Col&gt;
-          &lt;Form.Group className="mb3"&gt;
+          &lt;Form.Group className="mb-3"&gt;
             &lt;Form.Label htmlFor="explanation"&gt;Explanation&lt;/Form.Label&gt;
             &lt;Form.Control
               data-testid="HelpRequestForm-explanation"
@@ -530,8 +538,8 @@ function HelpRequestForm({
               {errors.explanation?.message}
             &lt;/Form.Control.Feedback&gt;
           &lt;/Form.Group&gt;
-          "
         &lt;/Col&gt;
+&nbsp;
         &lt;Col&gt;
           &lt;Form.Group className="mb-3"&gt;
             &lt;Form.Check
@@ -548,6 +556,7 @@ function HelpRequestForm({
           &lt;/Form.Group&gt;
         &lt;/Col&gt;
       &lt;/Row&gt;
+&nbsp;
       &lt;Row&gt;
         &lt;Col&gt;
           &lt;Button type="submit" data-testid="HelpRequestForm-submit"&gt;
@@ -574,7 +583,7 @@ export default HelpRequestForm;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-10-27T02:26:40.408Z
+                at 2026-10-27T06:28:15.196Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
