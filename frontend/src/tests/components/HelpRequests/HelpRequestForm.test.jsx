@@ -1,6 +1,6 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
 import HelpRequestForm from "main/components/HelpRequests/HelpRequestForm";
-import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
+import { helpRequestsFixtures } from "fixtures/helpRequestsFixtures";
 import { BrowserRouter as Router } from "react-router";
 import { expect } from "vitest";
 
@@ -17,7 +17,7 @@ describe("HelpRequestForm tests", () => {
   test("renders correctly", async () => {
     render(
       <Router>
-        <HelpRequestForm />
+        <HelpRequestForm initialContents={helpRequestsFixtures.oneHelpRequest} />
       </Router>,
     );
 
@@ -29,7 +29,7 @@ describe("HelpRequestForm tests", () => {
   test("renders correctly when passing in a HelpRequest", async () => {
     render(
       <Router>
-        <HelpRequestForm initialContents={helpRequestFixtures.oneDate} />
+        <HelpRequestForm initialContents={helpRequestsFixtures.oneHelpRequest} />
       </Router>,
     );
     await screen.findByTestId(/HelpRequestForm-id/);
@@ -49,11 +49,9 @@ describe("HelpRequestForm tests", () => {
 
     fireEvent.change(requestTimeField, { target: { value: "bad-input" } });
     fireEvent.click(submitButton);
-
-    await screen.findByText(/requestTime must be in ISO format/);
-    expect(
-      screen.getByText(/requestTime must be in ISO format/),
-    ).toBeInTheDocument();
+    
+    await screen.findByText(/Request Time is required./);
+    expect(screen.getByText(/Request Time is required./)).toBeInTheDocument();
   });
 
   test("Correct Error messsages on missing input", async () => {

@@ -103,13 +103,13 @@ function HelpRequestForm({
               id="requestTime"
               type="datetime-local"
               isInvalid={Boolean(errors.requestTime)}
-              {...register("localDateTime", {
+              {...register("requestTime", {
                 required: true,
                 pattern: isodate_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.localDateTime && "Request Time is required."}
+              {errors.requestTime && "Request Time is required."}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
