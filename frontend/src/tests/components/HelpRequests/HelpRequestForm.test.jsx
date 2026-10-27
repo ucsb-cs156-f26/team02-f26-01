@@ -17,7 +17,9 @@ describe("HelpRequestForm tests", () => {
   test("renders correctly", async () => {
     render(
       <Router>
-        <HelpRequestForm initialContents={helpRequestsFixtures.oneHelpRequest} />
+        <HelpRequestForm
+          initialContents={helpRequestsFixtures.oneHelpRequest}
+        />
       </Router>,
     );
 
@@ -29,7 +31,9 @@ describe("HelpRequestForm tests", () => {
   test("renders correctly when passing in a HelpRequest", async () => {
     render(
       <Router>
-        <HelpRequestForm initialContents={helpRequestsFixtures.oneHelpRequest} />
+        <HelpRequestForm
+          initialContents={helpRequestsFixtures.oneHelpRequest}
+        />
       </Router>,
     );
     await screen.findByTestId(/HelpRequestForm-id/);
@@ -49,7 +53,7 @@ describe("HelpRequestForm tests", () => {
 
     fireEvent.change(requestTimeField, { target: { value: "bad-input" } });
     fireEvent.click(submitButton);
-    
+
     await screen.findByText(/Request Time is required./);
     expect(screen.getByText(/Request Time is required./)).toBeInTheDocument();
   });
