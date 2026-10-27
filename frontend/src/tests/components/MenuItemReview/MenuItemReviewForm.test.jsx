@@ -184,4 +184,109 @@ describe("MenuItemReviewForm tests", () => {
       await screen.findByText("Comments cannot be blank."),
     ).toBeInTheDocument();
   });
+
+  test("item ID must be greater than zero", async () => {
+    const submitAction = vi.fn();
+
+    renderForm({
+      initialContents: menuItemReviewFixtures.oneMenuItemReview,
+      submitAction,
+    });
+
+    fireEvent.change(screen.getByTestId(testId + "-itemId"), {
+      target: { value: "0" },
+    });
+
+    fireEvent.submit(screen.getByTestId(testId + "-submit").closest("form"));
+
+    expect(
+      await screen.findByText("Item ID must be greater than 0."),
+    ).toBeInTheDocument();
+
+    expect(submitAction).not.toHaveBeenCalled();
+  });
+
+  test("reviewer email must contain an @ symbol", async () => {
+    const submitAction = vi.fn();
+
+    renderForm({
+      initialContents: menuItemReviewFixtures.oneMenuItemReview,
+      submitAction,
+    });
+
+    fireEvent.change(screen.getByTestId(testId + "-reviewerEmail"), {
+      target: { value: "notanemail" },
+    });
+
+    fireEvent.submit(screen.getByTestId(testId + "-submit").closest("form"));
+
+    expect(
+      await screen.findByText("Enter a valid email address."),
+    ).toBeInTheDocument();
+
+    expect(submitAction).not.toHaveBeenCalled();
+  });
+
+  test("reviewer email must contain a valid domain", async () => {
+    const submitAction = vi.fn();
+
+    renderForm({
+      initialContents: menuItemReviewFixtures.oneMenuItemReview,
+      submitAction,
+    });
+
+    fireEvent.change(screen.getByTestId(testId + "-reviewerEmail"), {
+      target: { value: "student@ucsb" },
+    });
+
+    fireEvent.submit(screen.getByTestId(testId + "-submit").closest("form"));
+
+    expect(
+      await screen.findByText("Enter a valid email address."),
+    ).toBeInTheDocument();
+
+    expect(submitAction).not.toHaveBeenCalled();
+  });
+
+  test("reviewer email cannot have an extra @ at the beginning", async () => {
+    const submitAction = vi.fn();
+
+    renderForm({
+      initialContents: menuItemReviewFixtures.oneMenuItemReview,
+      submitAction,
+    });
+
+    fireEvent.change(screen.getByTestId(testId + "-reviewerEmail"), {
+      target: { value: "@student@ucsb.edu" },
+    });
+
+    fireEvent.submit(screen.getByTestId(testId + "-submit").closest("form"));
+
+    expect(
+      await screen.findByText("Enter a valid email address."),
+    ).toBeInTheDocument();
+
+    expect(submitAction).not.toHaveBeenCalled();
+  });
+
+  test("reviewer email cannot have an extra @ at the end", async () => {
+    const submitAction = vi.fn();
+
+    renderForm({
+      initialContents: menuItemReviewFixtures.oneMenuItemReview,
+      submitAction,
+    });
+
+    fireEvent.change(screen.getByTestId(testId + "-reviewerEmail"), {
+      target: { value: "student@ucsb.edu@" },
+    });
+
+    fireEvent.submit(screen.getByTestId(testId + "-submit").closest("form"));
+
+    expect(
+      await screen.findByText("Enter a valid email address."),
+    ).toBeInTheDocument();
+
+    expect(submitAction).not.toHaveBeenCalled();
+  });
 });
