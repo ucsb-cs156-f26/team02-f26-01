@@ -19,6 +19,13 @@ Empty.args = {
   requests: [],
 };
 
+export const OneItemOrdinaryUser = Template.bind({});
+
+OneItemOrdinaryUser.args = {
+  requests: helpRequestsFixtures.oneHelpRequest,
+  currentUser: currentUserFixtures.userOnly,
+};
+
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
