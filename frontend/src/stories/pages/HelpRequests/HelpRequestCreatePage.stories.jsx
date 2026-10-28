@@ -25,7 +25,7 @@ Default.parameters = {
         status: 200,
       });
     }),
-    http.post("/api/helprequests/post", () => {
+    http.post("/api/helprequest/post", () => {
       return HttpResponse.json({}, { status: 200 });
     }),
   ],
