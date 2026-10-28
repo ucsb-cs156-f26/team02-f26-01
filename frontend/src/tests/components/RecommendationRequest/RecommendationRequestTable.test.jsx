@@ -1,6 +1,16 @@
-import { render, screen, within } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MemoryRouter } from "react-router";
+import { render as rtlRender } from "@testing-library/react";
 import RecommendationRequestTable from "main/components/RecommendationRequest/RecommendationRequestTable";
 import { recommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
+
+const render = (ui) =>
+  rtlRender(
+    <QueryClientProvider client={new QueryClient()}>
+      <MemoryRouter>{ui}</MemoryRouter>
+    </QueryClientProvider>,
+  );
 
 describe("RecommendationRequestTable tests", () => {
   const expectedHeaders = [
