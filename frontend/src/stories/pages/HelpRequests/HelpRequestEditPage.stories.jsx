@@ -26,12 +26,12 @@ Default.parameters = {
         status: 200,
       });
     }),
-    http.get("/api/helprequests", () => {
+    http.get("/api/helprequest", () => {
       return HttpResponse.json(helpRequestsFixtures.oneHelpRequest, {
         status: 200,
       });
     }),
-    http.put("/api/helprequests", () => {
+    http.put("/api/helprequest", () => {
       return HttpResponse.json({}, { status: 200 });
     }),
   ],
