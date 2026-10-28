@@ -39,7 +39,9 @@ export default function UCSBOrganizationsEditPage({ storybook = false }) {
   });
 
   const onSuccess = (ucsbOrganization) => {
-    toast(`Organization Updated - orgCode: ${ucsbOrganization.orgCode} orgTranslationShort: ${ucsbOrganization.orgTranslationShort}`);
+    toast(
+      `Organization Updated - orgCode: ${ucsbOrganization.orgCode} orgTranslationShort: ${ucsbOrganization.orgTranslationShort}`,
+    );
   };
 
   const mutation = useBackendMutation(
@@ -74,4 +76,3 @@ export default function UCSBOrganizationsEditPage({ storybook = false }) {
     </BasicLayout>
   );
 }
-
