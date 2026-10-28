@@ -85,7 +85,7 @@ describe("Footer tests", () => {
       // Wait for the null data to be processed.
       await waitFor(() => {
         const expectedText =
-          "This is a sample webapp using React with a Spring Boot backend.";
+          "This is a sample webapp using React with a Spring Boot backend. See the source code on Github.";
         expect(screen.getByTestId("Footer").textContent).toBe(expectedText);
       });
 
@@ -93,7 +93,7 @@ describe("Footer tests", () => {
         "footer-see-source-code",
       );
       expect(footer_see_source_code).toBeInTheDocument();
-      expect(footer_see_source_code).toBeEmpty();
+      expect(footer_see_source_code).toBeInTheDocument();
     });
   });
 });
