@@ -10,6 +10,31 @@ import { expect } from "vitest";
 describe("AppNavbar tests", () => {
   const queryClient = new QueryClient();
 
+  test.each([
+    ["regular user", currentUserFixtures.userOnly, true],
+    ["admin", currentUserFixtures.adminUser, true],
+    ["logged out", currentUserFixtures.notLoggedIn, false],
+    ["no current user", null, false],
+    [
+      "logged in without ROLE_USER",
+      {
+        ...currentUserFixtures.userOnly,
+        root: { ...currentUserFixtures.userOnly.root, rolesList: [] },
+      },
+      false,
+    ],
+  ])("RecommendationRequest link for %s", (_label, currentUser, visible) => {
+    render(
+      <MemoryRouter>
+        <AppNavbar currentUser={currentUser} />
+      </MemoryRouter>,
+    );
+    const link = screen.queryByRole("link", { name: "RecommendationRequest" });
+    expect(link?.getAttribute("href") ?? null).toBe(
+      visible ? "/recommendationrequest" : null,
+    );
+  });
+
   test("renders correctly for regular logged in user", async () => {
     const currentUser = currentUserFixtures.userOnly;
     const doLogin = vi.fn();
