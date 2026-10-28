@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
 
-export default function HelpRequestTable({ requests, currentUser }) {
+export default function HelpRequestsTable({ requests, currentUser }) {
   const navigate = useNavigate();
 
   const editCallback = (cell) => {
@@ -63,14 +63,14 @@ export default function HelpRequestTable({ requests, currentUser }) {
 
   if (hasRole(currentUser, "ROLE_ADMIN")) {
     columns.push(
-      ButtonColumn("Edit", "primary", editCallback, "HelpRequestTable"),
+      ButtonColumn("Edit", "primary", editCallback, "HelpRequestsTable"),
     );
     columns.push(
-      ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestTable"),
+      ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestsTable"),
     );
   }
 
   return (
-    <OurTable data={requests} columns={columns} testid={"HelpRequestTable"} />
+    <OurTable data={requests} columns={columns} testid={"HelpRequestsTable"} />
   );
 }

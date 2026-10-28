@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { helpRequestsFixtures } from "fixtures/helpRequestsFixtures";
-import HelpRequestTable from "main/components/HelpRequests/HelpRequestTable";
+import HelpRequestsTable from "main/components/HelpRequests/HelpRequestTable";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
@@ -25,7 +25,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable
+          <HelpRequestsTable
             requests={helpRequestsFixtures.threeHelpRequests}
             currentUser={currentUser}
           />
@@ -51,7 +51,7 @@ describe("UserTable tests", () => {
       "explanation",
       "solved",
     ];
-    const testId = "HelpRequestTable";
+    const testId = "HelpRequestsTable";
 
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
@@ -87,7 +87,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable
+          <HelpRequestsTable
             requests={helpRequestsFixtures.threeHelpRequests}
             currentUser={currentUser}
           />
@@ -113,7 +113,7 @@ describe("UserTable tests", () => {
       "explanation",
       "solved",
     ];
-    const testId = "HelpRequestTable";
+    const testId = "HelpRequestsTable";
 
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
@@ -151,7 +151,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable
+          <HelpRequestsTable
             requests={helpRequestsFixtures.threeHelpRequests}
             currentUser={currentUser}
           />
@@ -161,12 +161,12 @@ describe("UserTable tests", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByTestId(`HelpRequestTable-cell-row-0-col-id`),
+        screen.getByTestId(`HelpRequestsTable-cell-row-0-col-id`),
       ).toHaveTextContent("1");
     });
 
     const editButton = screen.getByTestId(
-      `HelpRequestTable-cell-row-0-col-Edit-button`,
+      `HelpRequestsTable-cell-row-0-col-Edit-button`,
     );
     expect(editButton).toBeInTheDocument();
 
@@ -190,7 +190,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable
+          <HelpRequestsTable
             requests={helpRequestsFixtures.threeHelpRequests}
             currentUser={currentUser}
           />
@@ -202,12 +202,12 @@ describe("UserTable tests", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByTestId(`HelpRequestTable-cell-row-0-col-id`),
+        screen.getByTestId(`HelpRequestsTable-cell-row-0-col-id`),
       ).toHaveTextContent("1");
     });
 
     const deleteButton = screen.getByTestId(
-      `HelpRequestTable-cell-row-0-col-Delete-button`,
+      `HelpRequestsTable-cell-row-0-col-Delete-button`,
     );
     expect(deleteButton).toBeInTheDocument();
 

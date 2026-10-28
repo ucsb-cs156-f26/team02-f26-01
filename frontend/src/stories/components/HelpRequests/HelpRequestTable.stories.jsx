@@ -1,16 +1,16 @@
 import React from "react";
-import HelpRequestTable from "main/components/HelpRequests/HelpRequestTable";
+import HelpRequestsTable from "main/components/HelpRequests/HelpRequestTable";
 import { helpRequestsFixtures } from "fixtures/helpRequestsFixtures";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import { http, HttpResponse } from "msw";
 
 export default {
-  title: "components/HelpRequests/HelpRequestTable",
-  component: HelpRequestTable,
+  title: "components/HelpRequests/HelpRequestsTable",
+  component: HelpRequestsTable,
 };
 
 const Template = (args) => {
-  return <HelpRequestTable {...args} />;
+  return <HelpRequestsTable {...args} />;
 };
 
 export const Empty = Template.bind({});
