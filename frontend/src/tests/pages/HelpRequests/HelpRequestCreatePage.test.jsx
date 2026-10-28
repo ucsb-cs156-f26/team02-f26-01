@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import HelpRequestsCreatePage from "main/pages/HelpRequests/HelpRequestsCreatePage";
+import HelpRequestsCreatePage from "main/pages/HelpRequests/HelpRequestCreatePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 
@@ -69,7 +69,7 @@ describe("HelpRequestsCreatePage tests", () => {
       tableOrBreakoutRoom: "table",
       requestTime: "2022-02-02T00:00",
       explanation: "None",
-      solved: true
+      solved: true,
     };
 
     axiosMock.onPost("/api/helprequests/post").reply(202, helpRequest);
@@ -90,17 +90,22 @@ describe("HelpRequestsCreatePage tests", () => {
 
     const requesterEmail = screen.getByTestId("HelpRequestForm-requesterEmail");
     const teamId = screen.getByTestId("HelpRequestForm-teamId");
-    const tableOrBreakoutRoom = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
+    const tableOrBreakoutRoom = screen.getByTestId(
+      "HelpRequestForm-tableOrBreakoutRoom",
+    );
     const requestTime = screen.getByTestId("HelpRequestForm-requestTime");
     const explanation = screen.getByTestId("HelpRequestForm-explanation");
     const solved = screen.getByTestId("HelpRequestForm-solved");
+    const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
     fireEvent.change(requesterEmail, { target: { value: "test2@ucsb.edu" } });
     fireEvent.change(teamId, { target: { value: "02" } });
-    fireEvent.change(tableOrBreakoutRoom, { target: { value: "breakout room"} });
+    fireEvent.change(tableOrBreakoutRoom, {
+      target: { value: "breakout room" },
+    });
     fireEvent.change(requestTime, { target: { value: "2022-02-02T00:00" } });
     fireEvent.change(explanation, { target: { value: "Some explanation" } });
-    fireEvent.change(solved, { target: { value: true } });
+    fireEvent.change(solved, { target: { value: false } });
 
     expect(submitButton).toBeInTheDocument();
 
@@ -109,7 +114,7 @@ describe("HelpRequestsCreatePage tests", () => {
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      solved: true,
+      solved: false,
       explanation: "Some explanation",
       requestTime: "2022-02-02T00:00",
       tableOrBreakoutRoom: "breakout room",
@@ -117,9 +122,7 @@ describe("HelpRequestsCreatePage tests", () => {
       requesterEmail: "test2@ucsb.edu",
     });
 
-    expect(mockToast).toBeCalledWith(
-      "New helpRequest Created - id: 17",
-    );
+    expect(mockToast).toBeCalledWith("New Help Request Created - id: 17");
     expect(mockNavigate).toBeCalledWith({ to: "/helprequests" });
   });
 });

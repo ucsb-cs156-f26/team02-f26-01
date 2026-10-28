@@ -14,12 +14,12 @@ export default function HelpRequestsCreatePage({ storybook = false }) {
       tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
       requestTime: helpRequest.requestTime,
       explanation: helpRequest.explanation,
-      solved: helpRequest.solved
+      solved: helpRequest.solved,
     },
   });
 
   const onSuccess = (helpRequest) => {
-    toast(`New helpRequest Created - id: ${helpRequest.id}`);
+    toast(`New Help Request Created - id: ${helpRequest.id}`);
   };
 
   const mutation = useBackendMutation(
