@@ -36,7 +36,7 @@ function UCSBDiningCommonsMenuItemForm({
       )}
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="diningCommonsCode">diningCommonsCode</Form.Label>
+        <Form.Label htmlFor="diningCommonsCode">Dining Commons Code</Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-diningCommonsCode"}
           id="diningCommonsCode"
@@ -56,7 +56,7 @@ function UCSBDiningCommonsMenuItemForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="name">name</Form.Label>
+        <Form.Label htmlFor="name">Name</Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-name"}
           id="name"
@@ -68,6 +68,22 @@ function UCSBDiningCommonsMenuItemForm({
         />
         <Form.Control.Feedback type="invalid">
           {errors.name?.message}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label htmlFor="station">Station</Form.Label>
+        <Form.Control
+          data-testid={testIdPrefix + "-station"}
+          id="station"
+          type="text"
+          isInvalid={Boolean(errors.station)}
+          {...register("station", {
+            required: "Station is required.",
+          })}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.station?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
