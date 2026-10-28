@@ -1,16 +1,16 @@
 import React from "react";
-import HelpRequestsTable from "main/components/HelpRequests/HelpRequestTable";
+import HelpRequestTable from "main/components/HelpRequests/HelpRequestTable";
 import { helpRequestsFixtures } from "fixtures/helpRequestsFixtures";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import { http, HttpResponse } from "msw";
 
 export default {
-  title: "components/HelpRequests/HelpRequestsTable",
-  component: HelpRequestsTable,
+  title: "components/HelpRequests/HelpRequestTable",
+  component: HelpRequestTable,
 };
 
 const Template = (args) => {
-  return <HelpRequestsTable {...args} />;
+  return <HelpRequestTable {...args} />;
 };
 
 export const Empty = Template.bind({});
@@ -34,7 +34,7 @@ ThreeItemsAdminUser.args = {
 
 ThreeItemsAdminUser.parameters = {
   msw: [
-    http.delete("/api/helprequests", () => {
+    http.delete("/api/helprequest", () => {
       return HttpResponse.json({}, { status: 200 });
     }),
   ],

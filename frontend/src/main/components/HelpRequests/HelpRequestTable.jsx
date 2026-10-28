@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
 
-export default function HelpRequestsTable({ requests, currentUser }) {
+export default function HelpRequestTable({ requests, currentUser }) {
   const navigate = useNavigate();
 
   const editCallback = (cell) => {
@@ -21,7 +21,7 @@ export default function HelpRequestsTable({ requests, currentUser }) {
   const deleteMutation = useBackendMutation(
     cellToAxiosParamsDelete,
     { onSuccess: onDeleteSuccess },
-    ["/api/helprequests/all"],
+    ["/api/helprequest/all"],
   );
   // Stryker restore all
 
@@ -63,14 +63,14 @@ export default function HelpRequestsTable({ requests, currentUser }) {
 
   if (hasRole(currentUser, "ROLE_ADMIN")) {
     columns.push(
-      ButtonColumn("Edit", "primary", editCallback, "HelpRequestsTable"),
+      ButtonColumn("Edit", "primary", editCallback, "HelpRequestTable"),
     );
     columns.push(
-      ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestsTable"),
+      ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestTable"),
     );
   }
 
   return (
-    <OurTable data={requests} columns={columns} testid={"HelpRequestsTable"} />
+    <OurTable data={requests} columns={columns} testid={"HelpRequestTable"} />
   );
 }

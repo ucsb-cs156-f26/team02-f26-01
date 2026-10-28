@@ -70,7 +70,11 @@ function App() {
       )}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
-          <Route exact path="/ucsbdates" element={<HelpRequestIndexPage />} />
+          <Route
+            exact
+            path="/helprequests"
+            element={<HelpRequestIndexPage />}
+          />
         </>
       )}
       {hasRole(currentUser, "ROLE_ADMIN") && (
@@ -154,8 +158,6 @@ function App() {
             exact
             path="/recommendationrequest"
             element={<RecommendationRequestIndexPage />}
-            path="/menuitemreview"
-            element={<MenuItemReviewIndexPage />}
           />
         </>
       )}
@@ -170,6 +172,22 @@ function App() {
             exact
             path="/recommendationrequest/create"
             element={<RecommendationRequestCreatePage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_USER") && (
+        <>
+          <Route
+            exact
+            path="/menuitemreview"
+            element={<MenuItemReviewIndexPage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_ADMIN") && (
+        <>
+          <Route
+            exact
             path="/menuitemreview/edit/:id"
             element={<MenuItemReviewEditPage />}
           />
