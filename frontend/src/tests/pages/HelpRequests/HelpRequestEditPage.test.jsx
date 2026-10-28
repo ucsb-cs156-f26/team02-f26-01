@@ -46,7 +46,7 @@ describe("HelpRequestEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/helprequests", { params: { id: 17 } }).timeout();
+      axiosMock.onGet("/api/helprequest", { params: { id: 17 } }).timeout();
     });
 
     afterEach(() => {
@@ -88,7 +88,7 @@ describe("HelpRequestEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/helprequests", { params: { id: 17 } }).reply(200, {
+      axiosMock.onGet("/api/helprequest", { params: { id: 17 } }).reply(200, {
         id: 17,
         requesterEmail: "test@ucsb.edu",
         teamId: "01",
@@ -97,7 +97,7 @@ describe("HelpRequestEditPage tests", () => {
         explanation: "None",
         solved: false,
       });
-      axiosMock.onPut("/api/helprequests").reply(200, {
+      axiosMock.onPut("/api/helprequest").reply(200, {
         id: "17",
         requesterEmail: "test2@ucsb.edu",
         teamId: "02",
