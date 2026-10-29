@@ -62,7 +62,6 @@ function ArticleForm({
               data-testid={testIdPrefix + "-title"}
               id="title"
               type="text"
-              value={initialContents && initialContents.title}
               isInvalid={Boolean(errors.title)}
               {...register("title", {
                 required: "Title is required.",
@@ -81,7 +80,6 @@ function ArticleForm({
               data-testid={testIdPrefix + "-url"}
               id="url"
               type="text"
-              value={initialContents && initialContents.url}
               isInvalid={Boolean(errors.url)}
               {...register("url", {
                 required: "Url is required.",
@@ -104,7 +102,6 @@ function ArticleForm({
               data-testid={testIdPrefix + "-explanation"}
               id="explanation"
               type="text"
-              value={initialContents && initialContents.explanation}
               isInvalid={Boolean(errors.explanation)}
               {...register("explanation", {
                 required: "Explanation is required.",
@@ -127,7 +124,6 @@ function ArticleForm({
               data-testid={testIdPrefix + "-email"}
               id="email"
               type="text"
-              value={initialContents && initialContents.email}
               isInvalid={Boolean(errors.email)}
               {...register("email", {
                 required: "Email is required.",
