@@ -44,7 +44,8 @@
     "@storybook/builder-vite": "10.1.11",
     "@storybook/react-vite": "10.1.11",
     "@storybook/react-webpack5": "10.1.11",
-    "@stryker-mutator/vitest-runner": "^9.4.0",
+    "@stryker-mutator/core": "^10.1.1",
+    "@stryker-mutator/vitest-runner": "^10.1.1",
     "@testing-library/react": "^16.3.1",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
@@ -106,5 +107,10 @@
         "version": "detect"
       }
     }
+  },
+  "allowScripts": {
+    "esbuild@0.27.2": true,
+    "@swc/core@1.15.8": true,
+    "msw@2.12.7": true
   }
 }
