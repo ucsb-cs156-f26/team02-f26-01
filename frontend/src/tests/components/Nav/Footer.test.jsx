@@ -93,7 +93,7 @@ describe("Footer tests", () => {
         "footer-see-source-code",
       );
       expect(footer_see_source_code).toBeInTheDocument();
-      expect(footer_see_source_code).toBeEmpty();
+      expect(footer_see_source_code).toBeEmptyDOMElement();
     });
   });
 });

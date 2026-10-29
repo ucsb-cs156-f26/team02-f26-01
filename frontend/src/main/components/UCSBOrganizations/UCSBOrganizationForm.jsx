@@ -35,7 +35,7 @@ function UCSBOrganizationForm({
           id="orgCode"
           type="text"
           isInvalid={Boolean(errors.orgCode)}
-          readOnly={Boolean(initialContents)}
+          disabled={Boolean(initialContents)}
           {...register("orgCode", {
             required: "Organization Code is required.",
           })}
@@ -96,7 +96,9 @@ function UCSBOrganizationForm({
         />
       </Form.Group>
 
-      <Button type="submit">{buttonLabel}</Button>
+      <Button type="submit" data-testid={testIdPrefix + "-submit"}>
+        {buttonLabel}
+      </Button>
       <Button
         variant="Secondary"
         onClick={() => navigate(-1)}
