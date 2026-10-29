@@ -35,7 +35,7 @@ function UCSBOrganizationForm({
           id="orgCode"
           type="text"
           isInvalid={Boolean(errors.orgCode)}
-          readOnly={Boolean(initialContents)}
+          disabled={Boolean(initialContents)}
           {...register("orgCode", {
             required: "Organization Code is required.",
           })}
