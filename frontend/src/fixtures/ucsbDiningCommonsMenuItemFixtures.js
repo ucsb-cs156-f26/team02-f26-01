@@ -22,7 +22,7 @@ const ucsbDiningCommonsMenuItemFixtures = {
       id: 4,
       diningCommonsCode: "Portola",
       name: "Sushi",
-      station: "Sushi",
+      station: "Candy",
     },
   ],
 };
