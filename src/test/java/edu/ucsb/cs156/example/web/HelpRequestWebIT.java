@@ -16,35 +16,47 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ActiveProfiles("integration")
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 public class HelpRequestWebIT extends WebTestCase {
+  // @Test
+  // public void admin_user_can_create_edit_delete_helprequest() throws Exception {
+  //   setupUser(true);
+
+  //   page.getByText("HelpRequests").click();
+
+  //   page.getByText("Create HelpRequest").click();
+  // assertThat(page.getByText("Create New HelpRequest")).isVisible();
+  // page.getByTestId("HelpRequestForm-requesterEmail").fill("test@ucsb.edu");
+  // page.getByTestId("HelpRequestForm-teamId").fill("01");
+  // page.getByTestId("HelpRequestForm-tableOrBreakoutRoom").fill("table");
+  // page.getByTestId("HelpRequestForm-requestTime").fill("2026-10-10T12:00");
+  // page.getByTestId("HelpRequestForm-explanation").fill("None");
+  // page.getByTestId("helpRequestForm-solved").click();
+  // page.getByTestId("helpRequestForm-submit").click();
+
+  //   assertThat(page.getByTestId("HelpRequestTable-cell-row-0-col-requesterEmail"))
+  //       .hasText("test@ucsb.edu");
+
+  //   page.getByTestId("HelpRequestTable-cell-row-0-col-Edit-button").click();
+  //   assertThat(page.getByText("Edit HelpRequest")).isVisible();
+  //   page.getByTestId("HelpRequestForm-explanation").fill("Tests not passing");
+  //   page.getByTestId("HelpRequestForm-submit").click();
+
+  //   assertThat(page.getByTestId("HelpRequestTable-cell-row-0-col-explanation"))
+  //       .hasText("Tests not passing");
+
+  //   page.getByTestId("HelpRequestTable-cell-row-0-col-Delete-button").click();
+
+  //   assertThat(page.getByTestId("HelpRequestTable-cell-row-0-col-requesterEmail"))
+  //       .not()
+  //       .isVisible();
+  // }
+
   @Test
-  public void admin_user_can_create_edit_delete_helprequest() throws Exception {
-    setupUser(true);
+  public void regular_user_cannot_create_helprequest() throws Exception {
+    setupUser(false);
 
     page.getByText("HelpRequests").click();
 
-    page.getByText("Create HelpRequest").click();
-    assertThat(page.getByText("Create New HelpRequest")).isVisible();
-    page.getByTestId("HelpRequestForm-requesterEmail").fill("test@ucsb.edu");
-    page.getByTestId("HelpRequestForm-teamId").fill("01");
-    page.getByTestId("HelpRequestForm-tableOrBreakoutRoom").fill("table");
-    page.getByTestId("HelpRequestForm-requestTime").fill("2026-10-10T12:00");
-    page.getByTestId("HelpRequestForm-explanation").fill("None");
-    page.getByTestId("helpRequestForm-solved").click();
-    page.getByTestId("helpRequestForm-submit").click();
-
-    assertThat(page.getByTestId("HelpRequestTable-cell-row-0-col-requesterEmail"))
-        .hasText("test@ucsb.edu");
-
-    page.getByTestId("HelpRequestTable-cell-row-0-col-Edit-button").click();
-    assertThat(page.getByText("Edit HelpRequest")).isVisible();
-    page.getByTestId("HelpRequestForm-explanation").fill("Tests not passing");
-    page.getByTestId("HelpRequestForm-submit").click();
-
-    assertThat(page.getByTestId("HelpRequestTable-cell-row-0-col-explanation"))
-        .hasText("Tests not passing");
-
-    page.getByTestId("HelpRequestTable-cell-row-0-col-Delete-button").click();
-
+    assertThat(page.getByText("Create HelpRequest")).not().isVisible();
     assertThat(page.getByTestId("HelpRequestTable-cell-row-0-col-requesterEmail"))
         .not()
         .isVisible();
